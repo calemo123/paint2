@@ -1,34 +1,26 @@
-var NameOfPeople = []
+canvas = document.getElementById("myCanvas");
+ctx = canvas.getContext("2d");
 
-function enviarNome()
+function myMouseDown(e)
 {
-var GuestName = document.getElementById("name1").value;
-NameOfPeople.push(GuestName);
-document.getElementById("listaDeConvidados").innerHTML = NameOfPeople;
+color = document.getElementById("color").value;
+widthLine = document.getElementById("widthLine").value;
+radius = document.getElementById("radius").value;
+MouseEvent = "mouseDown";
 }
-function mostrarNomes()
+function mouseMove(e)
 {
-var mostrar = NameOfPeople.join("<br>");
-document.getElementById("ListaDeConvidados2").innerHTML = mostrar;
-document.getElementById("butãoOrganizar").style.display = "block";
-}
-function organizarNomes()
-{
-NameOfPeople.sort();
-document.getElementById("ListaDeConvidados3").innerHTML = NameOfPeople;
-}
-function pesquisarNome()
-{
- var s= document.getElementById("input1").value;
- var found=0;
- var j;
- for(j=0; j<NameOfPeople.length; j++)
+ positionMouseX = e.clientX - canvas.offsetLeft;
+ positionMouseY = e.clientY - canvas.offsetTop;
+
+ if(MouseEvent == "mouseDown") 
  {
- if(s==NameOfPeople[j])
- {
-    found=found+1;
+ console.log("Current position of x and y coordinates = ");
+ console.log("x = " + PositionMouseX + "y = " + PositionMouseY );
+ ctx.beginPath();
+ ctx.strokeStyle = color;
+ ctx.lineWidth = widthLine;
+ ctx.arc(positionMouseX, PositionMouseY, radius, 0, 2 *Math.PI);
+ ctx.strokeStyle();
  }
- }
- document.getElementById("NúmeroDePessoasEncontradas").innerHTML="Nome encontrado "+found+" vez(es)";
- console.log("Nome encontrado "+found+" vez(es)");
 }
